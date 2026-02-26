@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport: ensures proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Faith Popcorn · Futurist · BrainReserve</title>
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            background: #eef2f7;
+            line-height: 1.5;
+            color: #1e2b41;
+            font-size: 16px;
+        }
+
+        /* TOP BAR – scrollable on very small screens */
+        .top-bar {
+            background: #0a2540;
+            color: #b2c9e8;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 0.8rem;
+            padding: 0.7rem 1rem;
+            border-bottom: 2px solid #2b4a73;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .top-bar span {
+            display: inline-block;
+            margin: 0 0.4rem;
+        }
+
+        /* HEADER – stacks on mobile */
+        .site-header {
+            background: white;
+            padding: 1.2rem 1.2rem;
+            border-bottom: 1px solid #cbd8ec;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            row-gap: 0.8rem;
+        }
+        .logo {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a2540;
+            line-height: 1.2;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #4169a0;
+            font-size: 0.9rem;
+            margin-left: 0.3rem;
+        }
+        .tagline {
+            font-style: italic;
+            color: #2b4f7c;
+            font-size: 0.9rem;
+            border-left: 1px solid #b0c6df;
+            padding-left: 1rem;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0,20,50,0.08);
+            padding: 2rem 1.8rem;
+        }
+
+        /* article header */
+        h1 {
+            font-size: 2.4rem;
+            color: #0a2540;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+        .subhead {
+            font-size: 1.2rem;
+            color: #2b4f7c;
+            font-style: italic;
+            margin-bottom: 2rem;
+            border-left: 4px solid #1e4a7a;
+            padding-left: 1.2rem;
+        }
+
+        /* TWO-COLUMN layout — switches to single column on mobile */
+        .two-column {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin: 1.8rem 0;
+        }
+
+        /* left column text */
+        .intro-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #0a2540;
+            margin: 2rem 0 1rem 0;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            border-bottom: 1px solid #d3e0f0;
+            padding-bottom: 0.3rem;
+        }
+        .process-block {
+            background: #f5faff;
+            padding: 1.5rem 1.8rem;
+            margin: 1.8rem 0;
+            border-left: 6px solid #1e4a7a;
+        }
+        .process-block p {
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+        .process-block strong {
+            color: #0f3d6a;
+        }
+        .health-example {
+            background: #e9f2fc;
+            padding: 1.4rem 1.8rem;
+            margin: 1.8rem 0;
+            border: 1px solid #b9cfec;
+        }
+
+        /* SIDEBAR (right column) */
+        .sidebar {
+            border-left: 1px solid #cfdeef;
+            padding-left: 2rem;
+        }
+        .info-card {
+            background: #f8fbfe;
+            border: 1px solid #c5d5ea;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .info-card h3 {
+            color: #0f3b6a;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            border-bottom: 1px solid #b9cee8;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .info-card p {
+            margin-bottom: 0.4rem;
+        }
+        .alive-badge {
+            background: #e3f2e3;
+            border: 1px solid #2e7d32;
+            color: #1b5e1b;
+            padding: 0.4rem 1rem;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+            margin: 0.5rem 0 0.2rem;
+        }
+        .trend-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            margin-top: 0.8rem;
+        }
+        .trend-item {
+            background: white;
+            border: 1px solid #a6bdd9;
+            padding: 0.2rem 1rem;
+            font-size: 0.85rem;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            color: #10355e;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #e9f0f9;
+            padding: 1rem 1.8rem;
+            border-top: 1px solid #b8cde4;
+            font-size: 0.8rem;
+            color: #2c4f7c;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+        .footer-links span {
+            margin-left: 1rem;
+            color: #173e65;
+        }
+
+        /* MOBILE FIXES (media query) */
+        @media screen and (max-width: 750px) {
+            .site-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            .tagline {
+                border-left: none;
+                padding-left: 0;
+                font-size: 0.85rem;
+            }
+            .container {
+                padding: 1.2rem 1rem;
+                margin: 0.5rem auto;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subhead {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            .two-column {
+                grid-template-columns: 1fr;  /* single column */
+                gap: 1.5rem;
+            }
+            .sidebar {
+                border-left: none;
+                padding-left: 0;
+            }
+            .info-card {
+                padding: 1rem;
+            }
+            .process-block {
+                padding: 1rem;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .footer-links span {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+        }
+
+        /* small phones (under 400px) */
+        @media screen and (max-width: 400px) {
+            .top-bar {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.2rem;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- top scrolling bar -->
+    <div class="top-bar">
+        <span>FUTURIST</span> • <span>BUSINESS</span> • <span>HEALTHCARE</span> • <span>TRENDS</span> • <span>ARCHIVE</span> • <span>BRAINRESERVE</span>
+    </div>
+
+    <!-- header with logo / tagline -->
+    <div class="site-header">
+        <div class="logo">THE FORESIGHT FORUM <span>| foresight.forum</span></div>
+        <div class="tagline">tracking cultural change since 1974</div>
+    </div>
+
+    <!-- main article container -->
+    <div class="container">
+        <h1>Faith Popcorn</h1>
+        <div class="subhead">The Futurist Who Decodes Tomorrow — and Advises Healthcare</div>
+
+        <!-- two-column grid (stacks on mobile) -->
+        <div class="two-column">
+            <!-- LEFT COLUMN (main text) -->
+            <div>
+                <p class="intro-text">Faith Popcorn is not a doctor, nor a lab researcher. She is a <strong>futurist</strong> — a professional forecaster who helps industries prepare for what's next. For nearly five decades, her company BrainReserve has guided Fortune 500 companies through cultural shifts.</p>
+
+                <h2>How She Works</h2>
+                <p>Popcorn's methodology, refined since the 1970s, follows three steps:</p>
+
+                <div class="process-block">
+                    <p><strong>1. Tracking</strong> — Her team monitors thousands of signals annually: patent filings, indie films, food packaging, underground blogs, and medical journals.</p>
+                    <p><strong>2. Naming Trends</strong> — She distills patterns into memorable concepts. Her most famous is <em>"cocooning"</em> (the impulse to stay home for security).</p>
+                    <p><strong>3. Consulting</strong> — BrainReserve sells these insights to clients, advising on product development and long-term strategy.</p>
+                </div>
+
+                <h2>Healthcare Application</h2>
+                <p>Healthcare organizations hire Popcorn to understand what patients will want years ahead. She predicted virtual health, mental wellness apps, and personalized medicine before they became standard.</p>
+
+                <div class="health-example">
+                    <p><strong>Example:</strong> She advised hospital networks that patients would treat health like a consumer brand — leading to investments in patient portals and digital care.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN (sidebar) -->
+            <div class="sidebar">
+                <!-- profile card -->
+                <div class="info-card">
+                    <h3>Profile</h3>
+                    <p><strong>Born:</strong> 1947 (age 77)</p>
+                    <p><strong>Company:</strong> BrainReserve (1974)</p>
+                    <p><strong>Known for:</strong> Cocooning, trend forecasting</p>
+                    <p><strong>Status:</strong> <span class="alive-badge">ALIVE — working</span></p>
+                </div>
+
+                <!-- named trends card -->
+                <div class="info-card">
+                    <h3>Named Trends</h3>
+                    <div class="trend-list">
+                        <span class="trend-item">Cocooning</span>
+                        <span class="trend-item">Fantasy adventure</span>
+                        <span class="trend-item">Small indulgences</span>
+                        <span class="trend-item">Anchoring</span>
+                        <span class="trend-item">Clanning</span>
+                        <span class="trend-item">99 lives</span>
+                        <span class="trend-item">Egonomics</span>
+                    </div>
+                </div>
+
+                <!-- healthcare clients card -->
+                <div class="info-card">
+                    <h3>Healthcare Clients</h3>
+                    <p>Johnson & Johnson • Pfizer • Mayo Clinic<br>Kaiser Permanente • CVS Health</p>
+                </div>
+
+                <!-- sources card -->
+                <div class="info-card">
+                    <h3>Sources</h3>
+                    <p><em>The Popcorn Report</em> (1991) · <em>Clicking</em> (1996)<br>BrainReserve · Oxford Reference · Britannica<br>Fast Company · CNN Business</p>
+                </div>
+            </div>
+        </div> <!-- end two-column -->
+
+        <!-- small note about death date (extra) -->
+        <p style="background: #f0f4fa; padding: 0.8rem; border-left: 4px solid #1d4d8b; margin: 1.5rem 0 0 0; font-size: 0.95rem;">
+            <strong>Note:</strong> Faith Popcorn is alive. Any biography form requesting a death date should be left blank or marked "N/A".
+        </p>
+
+    </div> <!-- end container -->
+
+    <!-- footer -->
+    <div class="footer">
+        <div>© 2025 The Foresight Forum — All rights reserved</div>
+        <div class="footer-links">
+            <span>About</span>
+            <span>Contact</span>
+            <span>Privacy</span>
+            <span>Sources</span>
+        </div>
+    </div>
+</body>
+</html>
